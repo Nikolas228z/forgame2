@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+    </head>
+    <body id="changecolor">
+    <header></header>
+        <main>
+            <style>
+            body{
+    margin: 0;
+  background-color: #1800ad;
+}
+.imgform{
+    margin-top: 32%;
+    width: 100%;
+}
+                .green-buton {
+                    font-weight: 750;
+                    font-size: 2rem;
+                    background: linear-gradient(to right, #068528, #00ff46);
+                    color: white;
+                    height: 8vh;
+                    width: 100%;
+                    transform: translateY(13vh);
+                    border-radius: 1vh;
+                }
+                .green-buton:hover{
+                     background: linear-gradient(to right, #055d1d, #08c63c);
+                }
+            </style>
+        <section>
+        <!--хімія математика фізика інформатика економіка історія українгська англійська мова-->
+<button class="green-buton" onclick="playMedia()">Натисніть тут!</button>
+            <audio id="mainAudio" src="forgame/zeroK3.mp3"></audio>
+            <video class="imgform" id="forvideo" type="video/mp4" disablepictureinpicture playsinline>
+                    <source src="роботи/Hailuo_Video_A realistic 3D video of a huma_442844818451378181.mp4" />
+                </video>
+            </section>
+        </main>
+        <footer></footer>
+        <script>
+        function playMedia() {
+    const audio = new Audio("forgame/zeroK3.mp3");
+    const video = document.getElementById("forvideo");
+  video.playbackRate = 0.5;
+    audio.play();
+    video.play();
+     setTimeout(() => {
+            video.pause();
+            audio.pause();
+        }, 30000);
+}
+        </script>
+    </body>
+</html>
