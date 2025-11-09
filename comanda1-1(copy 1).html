@@ -1,256 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Title</title>
-    </head>
-    <body id="changecolor">
-    <header></header>
-        <main>
-            <style>
-            body{
-    margin: 0;
-  background-color: #1800ad;
-}
-.imgform{
-    margin-top: 32%;
-    width: 100%;
-}
-.title{
-    color: white;
-    text-align: center;
-    font-size: 5rem;
-}
-.reddv{
-    transform: translateY(-53%);
-    background-color: #1800ad;
-    height: 14vh;
-}
-.text{
-    color: white;
-    text-align: center;
-    font-size: 3rem;
-}
-.litle-title{
-    color: white;
-    font-size: 6.5rem;
-    transform: translateY(10vh);
-    padding: 5% 0 0 0;
-    text-align: center;
-}
-.wth-dis{
-    transform: translateY(9vh);
-    font-size: 3rem;
-    display: flex;
-    justify-content: space-around;
-    padding: 0 0 5% 0;
-}
-.white-dv button{
-    font-size: 3rem;
-    width: 100%;
-    background-color: white;
-    height: 6vh;
-    align-content: center;
-    text-align: center;
-    border-radius: 2vh;
-}
-.div-wht-gap{
-    width: 46%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Гра з автоматизації</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #1800ad;
+        color: white;
+        font-family: sans-serif;
+        text-align: center;
+      }
 
-            </style>
-        <section>
-        <!--хімія математика фізика інформатика економіка історія українгська англійська мова-->
-            <h1 class="title">Запитання:#1</h1>
-           <!--  <p class="text">Як називається “мозок” комп’ютера?</p>-->
-            <svg xmlns="http://www.w3.org/2000/svg" class="more-white" onclick="playMedia()" height="60px" viewBox="0 -960 960 960" width="60px" fill="white"><path d="m380-300 280-180-280-180v360ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
+      .title {
+        font-size: 5rem;
+        margin-top: 5vh;
+      }
 
+      .question {
+        font-size: 2.5rem;
+        margin: 5vh 2%;
+        transition: opacity 0.5s ease;
+      }
 
-            <audio id="mainAudio" src="роботи/first question.mp3" autoplay></audio>
-<audio id="winAudio" src="роботи/пforrezalt.mp3"></audio>
-<audio id="loseAudio" src="роботи/неудача.mp3" autoplay></audio>
-            <video class="imgform" id="forvideo" type="video/mp4" disablepictureinpicture playsinline>
-                    <source src="роботи/Hailuo_Video_A realistic 3D video of a huma_442844818451378181.mp4" />
-                </video>
-            <div class="reddv" id="forgreen">
-            <h2 class="litle-title">Варіанти відповіді:</h2>
-                <div class="wth-dis">
-                <div class="div-wht-gap">
-                <div class="white-dv"><button onclick="loseone()">A) Мікрохвильовка</button></div>
-                <div class="white-dv"><button onclick="win()">B) Процесор</button></div><!--правильна відповіть-->
-                    </div>
-                <div class="div-wht-gap">
-                <div class="white-dv"><button onclick="losetwo()">C) Монітор</button></div>
-                <div class="white-dv"><button onclick="losetree()">D) Миша</button></div>
-                    </div>
-                    </div>
+      .answers {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        margin: 3vh 5%;
+          background-color: rgba(220, 220, 220, 0.27);
+          border: solid white;
+          border-radius: 2vh;
+          padding: 5vh;
+      }
+
+      button {
+        font-size: 2rem;
+        width: 200px;
+        height: 60px;
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #ddd;
+      }
+
+      video {
+        display: none;
+        margin-top: 3vh;
+        width: 80%;
+        border-radius: 10px;
+      }
+
+      .message {
+        font-size: 2.5rem;
+        margin-top: 5vh;
+        display: none;
+        transition: opacity 0.5s ease;
+      }
+      .big-later{
+         color: white;
+          font-size: 6rem;
+           display: none;
+          width: 100%;
+          height: 20vh;
+          margin: 0 auto;
+         text-align: center;
+                }
+        .wth-colum{
+            display: flex;
+            flex-direction: column;
+            gap: 41px;
+        }
+        .timer{
+            display: none;
+        }
+    </style>
+  </head>
+  <body id="pageBody">
+    <h1 class="title">Запитання #1</h1>
+
+    <p class="question" id="questionText">
+      Вітаю із знаходженням першого QR-коду!<br />
+      Щоб піти далі, дайте відповідь на запитання:<br />
+      <b>Яке слово найточніше описує роботу інженера-автоматника?</b>
+    </p>
+
+    <p class="message" id="loseMsg">
+      ❌ Нажаль, ви помилилися.<br />Зачекайте трішки, після чого спробуйте ще раз!
+    </p>
+      <p class="timer" id="timerText">⏳ 30 секунд залишилось</p>
+
+    <p class="message" id="winMsg">
+      ✅ Вітаю! Ви вибрали правильну відповідь!<br />
+        Щоб пройти далі відгадайте загадку:<br>
+      Якщо щось шумить, а ти не вариш борщ —<br />
+      Не бійся, це просто хімічний дощ! 🌧️<br>
+        Колби, реакції - вибухів край,<br>
+        Туди і йди - розум свій перевіряй!
+    </p>
+      <p class="big-later" id="oneLater">К</p>
+
+    <div class="answers" id="answers">
+        <div class="wth-colum">
+      <button onclick="lose()">A) Мрійник</button>
+      <button onclick="win()">B) Аналітик</button>
             </div>
-            </section>
-        </main>
-        <footer></footer>
-        <script>
-        let isDisplayed1 = false;
+        <div class="wth-colum">
+      <button onclick="lose()">C) Співак</button>
+      <button onclick="lose()">D) Геймер</button>
+            </div>
+    </div>
+    <script>
+      const body = document.getElementById("pageBody");
+      const question = document.getElementById("questionText");
+      const loseMsg = document.getElementById("loseMsg");
+      const winMsg = document.getElementById("winMsg");
+      const answers = document.getElementById("answers");
+            const oneLater = document.getElementById("oneLater");
 
-function win() {
-    if (!isDisplayed1) {
-        isDisplayed1 = true;
+   function lose() {
+  const timerText = document.getElementById("timerText");
+  let timeLeft = 30;
 
-        const body = document.getElementById("changecolor");
-        const reddv = document.getElementById("forgreen");
-        const video = document.getElementById("forvideo");
-        const mainAudio = document.getElementById("mainAudio");
-        const winAudio = document.getElementById("winAudio");
+  // 🔴 Робимо фон червоним
+  body.style.backgroundColor = "#921525";
 
-        // Зміна фону
-        body.style.backgroundColor = "#15921a"; // зелений фон
-        reddv.style.backgroundColor = "#15921a"; // зелений блок
+  // 🔴 Ховаємо питання та кнопки
+  question.style.display = "none";
+  answers.style.display = "none";
+  loseMsg.style.display = "block";
 
-        // Заміна відео
-        video.pause(); // спочатку зупиняємо попереднє
-        video.src = "роботи/Hailuo_Video_A realistic 3D video of a huma_442818610292518917.mp4";
-        video.load();
-        video.playbackRate = 0.5; // якщо хочеш повільніше
-        video.play();
+  // 🔴 Показуємо таймер
+  timerText.style.display = "inline-block";
+  timerText.textContent = `⏳ ${timeLeft} секунд залишилось`;
 
-        reddv.style.display = "none";
+  // ⏳ Запускаємо зворотний відлік
+  const countdown = setInterval(() => {
+    timeLeft--;
+    timerText.textContent = `⏳ ${timeLeft} секунд залишилось`;
 
-        // Заміна звуку
-        mainAudio.pause();
-        mainAudio.currentTime = 0;
-        winAudio.currentTime = 0;
-        winAudio.play();
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+
+      // 🟦 Після завершення 30 секунд:
+      body.style.backgroundColor = "#1800ad"; // повертаємо синій фон
+      loseMsg.style.display = "none";
+      timerText.style.display = "none"; // ховаємо таймер
+      question.style.display = "block"; // знову показуємо питання
+      answers.style.display = "flex"; // і варіанти відповідей
     }
+  }, 1000);
 }
 
-let isDisplayed2 = false;
 
-function loseone() {
-    if (!isDisplayed2) {
-        isDisplayed2 = true;
-        const body = document.getElementById("changecolor");
-        const reddv = document.getElementById("forgreen");
-        const video = document.getElementById("forvideo");
-        const mainAudio = document.getElementById("mainAudio");
-        const loseAudio = document.getElementById("loseAudio");
+      function win() {
+        // Зелений фон
+        body.style.backgroundColor = "#15921a";
 
-        body.style.backgroundColor = "#921525"; // червоний фон
-        reddv.style.backgroundColor = "#921525"; // червоний блок
-         video.src = "роботи/Hailuo_Video_A realistic 3D video of a huma_442581320437633026 (1).mp4";
-         video.load();
-         video.playbackRate = 0.5; // якщо хочеш повільніше
-        video.play();
-        reddv.style.display = "none";
-         // Заміна звуку
-        mainAudio.pause();
-        mainAudio.currentTime = 0;
-        loseAudio.currentTime = 0;
-        loseAudio.play();
-        setTimeout(() => {
-    nextQuestion(); // функція для завантаження наступного запитання
-}, 5000);
-    }
-}
-let isDisplayed3 = false;
+        // Ховаємо все інше
+        question.style.display = "none";
+        answers.style.display = "none";
+        loseMsg.style.display = "none";
+          oneLater.style.display = "inline-block";
 
-function losetwo() {
-    if (!isDisplayed3) {
-        isDisplayed3 = true;
-        const body = document.getElementById("changecolor");
-        const reddv = document.getElementById("forgreen");
-        const video = document.getElementById("forvideo");
-        const mainAudio = document.getElementById("mainAudio");
-        const loseAudio = document.getElementById("loseAudio");
-
-        body.style.backgroundColor = "#921525"; // червоний фон
-        reddv.style.backgroundColor = "#921525"; // червоний блок
-         video.src = "роботи/Hailuo_Video_A realistic 3D video of a huma_442581320437633026 (1).mp4";
-         video.load();
-         video.playbackRate = 0.5; // якщо хочеш повільніше
-        video.play();
-
-        reddv.style.display = "none";
-
-          // Заміна звуку
-        mainAudio.pause();
-        mainAudio.currentTime = 0;
-        loseAudio.currentTime = 0;
-        loseAudio.play();
-        setTimeout(() => {
-    nextQuestion(); // функція для завантаження наступного запитання
-}, 5000);
-    }
-}
-let isDisplayed4 = false;
-
-function losetree() {
-    if (!isDisplayed4) {
-        isDisplayed4 = true;
-        const body = document.getElementById("changecolor");
-        const reddv = document.getElementById("forgreen");
-        const video = document.getElementById("forvideo");
-        const mainAudio = document.getElementById("mainAudio");
-        const loseAudio = document.getElementById("loseAudio");
-
-        body.style.backgroundColor = "#921525"; // зелений фон
-        reddv.style.backgroundColor = "#921525"; // зелений блок
-         video.src = "роботи/Hailuo_Video_A realistic 3D video of a huma_442581320437633026 (1).mp4";
-         video.load();
-         video.playbackRate = 0.5; // якщо хочеш повільніше
-        video.play();
-
-        reddv.style.display = "none";
-
-          // Заміна звуку
-        mainAudio.pause();
-        mainAudio.currentTime = 0;
-        loseAudio.currentTime = 0;
-        loseAudio.play();
-        setTimeout(() => {
-    nextQuestion(); // функція для завантаження наступного запитання
-}, 5000);
-    }
-}
-function playMedia() {
-    const audio = new Audio("роботи/first question .mp3");
-    const video = document.getElementById("forvideo");
-  video.playbackRate = 0.5;
-    audio.play();
-    video.play();
-     setTimeout(() => {
-            video.pause();
-            audio.pause();
-        }, 10000);
-}
-function nextQuestion() {
-    // показуємо нові варіанти
-    const reddv = document.getElementById("forgreen");
-    reddv.style.display = "block";
-
-    // міняємо текст питання
-    document.querySelector(".title").textContent = "Додаткове запитання:";
-   const options = document.querySelectorAll(".white-dv button");
-
-options[0].textContent = "A) Джойстик";
-options[1].textContent = "B) Контролер";
-options[2].textContent = "C) Принтер";
-options[3].textContent = "D) Камера";
-
-    // міняємо звук на наступне
-    const mainAudio = document.getElementById("mainAudio");
-    mainAudio.src = "роботи/addquestion .mp3";
-    //Який пристрій використовується для керування роботом?
-    mainAudio.load();
-    mainAudio.play();
-}
-
-//#921525
-//#1800ad
-//#ffde59
-//#cb6ce6
-
-        </script>
-    </body>
+        // Показуємо повідомлення перемоги
+        winMsg.style.display = "block";
+      }
+    </script>
+  </body>
 </html>

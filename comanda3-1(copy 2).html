@@ -1,256 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Title</title>
-    </head>
-    <body id="changecolor">
-    <header></header>
-        <main>
-            <style>
-            body{
-    margin: 0;
-  background-color: #1800ad;
-}
-.imgform{
-    margin-top: 32%;
-    width: 100%;
-}
-.title{
-    color: white;
-    text-align: center;
-    font-size: 5rem;
-}
-.reddv{
-    transform: translateY(-53%);
-    background-color: #1800ad;
-    height: 14vh;
-}
-.text{
-    color: white;
-    text-align: center;
-    font-size: 3rem;
-}
-.litle-title{
-    color: white;
-    font-size: 6.5rem;
-    transform: translateY(10vh);
-    padding: 5% 0 0 0;
-    text-align: center;
-}
-.wth-dis{
-    transform: translateY(9vh);
-    font-size: 3rem;
-    display: flex;
-    justify-content: space-around;
-    padding: 0 0 5% 0;
-}
-.white-dv button{
-    font-size: 3rem;
-    width: 100%;
-    background-color: white;
-    height: 6vh;
-    align-content: center;
-    text-align: center;
-    border-radius: 2vh;
-}
-.div-wht-gap{
-    width: 46%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-                .two-video{
-                    width: 100%;
-                    display: none;
-                    transform: translateY(10vh);
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Гра з автоматизації</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #1800ad;
+        color: white;
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      .title {
+        font-size: 5rem;
+        margin-top: 5vh;
+      }
+
+      .question {
+        font-size: 2.5rem;
+        margin: 5vh 2%;
+        transition: opacity 0.5s ease;
+      }
+
+      .answers {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        margin: 3vh 5%;
+          background-color: rgba(220, 220, 220, 0.27);
+          border: solid white;
+          border-radius: 2vh;
+          padding: 5vh;
+      }
+
+      button {
+        font-size: 1.2rem;
+        width: 200px;
+        height: 60px;
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #ddd;
+      }
+
+      video {
+        display: none;
+        margin-top: 3vh;
+        width: 80%;
+        border-radius: 10px;
+      }
+
+      .message {
+        font-size: 2.5rem;
+        margin-top: 5vh;
+        display: none;
+        transition: opacity 0.5s ease;
+      }
+      .big-later{
+         color: white;
+          font-size: 6rem;
+           display: none;
+          width: 100%;
+          height: 20vh;
+          margin: 0 auto;
+         text-align: center;
                 }
- .big-later{
-                    color: white;
-                    font-size: 6rem;
-                    display: none;
-                    width: 100%;
-                    height: 20vh;
-                    margin: 0 auto;
-                    text-align: center;
-                }
+        .wth-colum{
+            display: flex;
+            flex-direction: column;
+            gap: 41px;
+        }
+        .timer{
+            display: none;
+        }
+    </style>
+  </head>
+  <body id="pageBody">
+    <h1 class="title">Запитання #2</h1>
 
-            </style>
-        <section>
-        <!--хімія математика фізика інформатика економіка історія українгська англійська мова-->
-            <h1 class="title">Запитання:#2</h1>
-           <!--  <p class="text">Як називається “мозок” комп’ютера?</p>-->
-            <svg xmlns="http://www.w3.org/2000/svg" class="more-white" onclick="playMedia()" height="60px" viewBox="0 -960 960 960" width="60px" fill="white"><path d="m380-300 280-180-280-180v360ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
+    <p class="question" id="questionText">
+      Ще один QR-код, так тримати!<br />
+      Щоб піти далі, дайте відповідь на запитання:<br />
+      <b>Як англійською буде слово «датчик»?</b>
+    </p>
 
+    <p class="message" id="loseMsg">
+      ❌ Нажаль, ви помилилися.<br />Зачекайте трішки, після чого спробуйте ще раз!
+    </p>
+      <p class="timer" id="timerText">⏳ 30 секунд залишилось</p>
 
-            <audio id="mainAudio" src="forgame/інглішпитк3.mp3"></audio>
-<audio id="winAudio" src="forgame/укрмовак3.mp3"></audio>
-<audio id="loseAudio" src="forgame/неправильноукрК1пр2.mp3"></audio>
-            <video class="imgform" id="forvideo" type="video/mp4" disablepictureinpicture playsinline>
-                    <source src="роботи/Hailuo_Video_A realistic 3D video of a huma_442844818451378181.mp4" />
-                </video>
-             <p class="big-later" id="oneLater">Р</p>
-            <div class="reddv" id="forgreen">
-                <video class="two-video" id="thirtysec" type="video/mp4" controls disablepictureinpicture playsinline>
-                <source src="forgame/worse.mp4">
-                </video>
-            <h2 class="litle-title">Варіанти відповіді:</h2>
-                <div class="wth-dis">
-                <div class="div-wht-gap">
-                <div class="white-dv"><button onclick="loseone()">A)Switch</button></div>
-                <div class="white-dv"><button onclick="losetwo()">B) Display</button></div><!--правильна відповіть-->
-                    </div>
-                <div class="div-wht-gap">
-                <div class="white-dv"><button onclick="losetree()">C)Engine</button></div>
-                <div class="white-dv"><button onclick="win()">D) Sensor</button></div>
-                    </div>
-                    </div>
+    <p class="message" id="winMsg">
+      ✅ Ви вибрали правильну відповідь!<br />
+        Щоб пройти далі відгадайте загадку:<br>
+    Де слово - зброя, а літера - щит,<br>
+        Де "щастя" й "Доля" звучать як мить,<br>
+        Там рідна мова всіх нас єднає,<br>
+        Хто знайде цей клас, той далі рушає!
+    </p>
+      <p class="big-later" id="oneLater">О</p>
+
+    <div class="answers" id="answers">
+        <div class="wth-colum">
+      <button onclick="lose()">а)Switch</button>
+      <button onclick="lose()"> б) Display</button>
             </div>
-            </section>
-        </main>
-        <footer></footer>
-        <script>
-        let isDisplayed1 = false;
+        <div class="wth-colum">
+      <button onclick="win()">   в) Sensor</button>
+      <button onclick="lose()"> г) Engine</button>
+            </div>
+    </div>
+    <script>
+      const body = document.getElementById("pageBody");
+      const question = document.getElementById("questionText");
+      const loseMsg = document.getElementById("loseMsg");
+      const winMsg = document.getElementById("winMsg");
+      const answers = document.getElementById("answers");
+            const oneLater = document.getElementById("oneLater");
 
-function win() {
-    if (!isDisplayed1) {
-        isDisplayed1 = true;
+   function lose() {
+  const timerText = document.getElementById("timerText");
+  let timeLeft = 30;
 
-        const body = document.getElementById("changecolor");
-        const reddv = document.getElementById("forgreen");
-        const video = document.getElementById("forvideo");
-        const mainAudio = document.getElementById("mainAudio");
-        const winAudio = document.getElementById("winAudio");
-         const oneLater = document.getElementById("oneLater");
-
-        // Зміна фону
-        body.style.backgroundColor = "#15921a"; // зелений фон
-        reddv.style.backgroundColor = "#15921a"; // зелений блок
-  oneLater.style.display = "inline-block";
-        // Заміна відео
-        video.pause(); // спочатку зупиняємо попереднє
-        video.src = "роботи/Hailuo_Video_A realistic 3D video of a huma_442818610292518917.mp4";
-        video.load();
-        video.playbackRate = 0.5; // якщо хочеш повільніше
-        video.play();
-
-        reddv.style.display = "none";
-
-        // Заміна звуку
-        mainAudio.pause();
-        mainAudio.currentTime = 0;
-        winAudio.currentTime = 0;
-        winAudio.play();
-    }
-    document.querySelector("svg").onclick = () => {
-  winAudio.currentTime = 0;
-  winAudio.play();
-};
-}
-
-function loseGeneric(buttonNumber) {
-  const body = document.getElementById("changecolor");
-  const reddv = document.getElementById("forgreen");
-  const video = document.getElementById("forvideo");
-  const mainAudio = document.getElementById("mainAudio");
-  const loseAudio = document.getElementById("loseAudio");
-  const thirtysec = document.getElementById("thirtysec");
-
- document.querySelector(".wth-dis").style.display = "none"; 
-document.querySelector(".litle-title").style.display = "none";
-
-
-  // Робимо червоний фон
+  // 🔴 Робимо фон червоним
   body.style.backgroundColor = "#921525";
-  reddv.style.backgroundColor = "#921525";
 
-  // Зупиняємо головне відео
-  video.pause();
-  video.src = "роботи/Hailuo_Video_A realistic 3D video of a huma_442581320437633026 (1).mp4";
-  video.load();
-  video.playbackRate = 0.5;
-  video.play();
+  // 🔴 Ховаємо питання та кнопки
+  question.style.display = "none";
+  answers.style.display = "none";
+  loseMsg.style.display = "block";
 
-  // Вимикаємо головний звук
-  mainAudio.pause();
-  mainAudio.currentTime = 0;
+  // 🔴 Показуємо таймер
+  timerText.style.display = "inline-block";
+  timerText.textContent = `⏳ ${timeLeft} секунд залишилось`;
 
-  // Програємо "сваріння" робота
-  loseAudio.currentTime = 0;
-  loseAudio.play();
+  // ⏳ Запускаємо зворотний відлік
+  const countdown = setInterval(() => {
+    timeLeft--;
+    timerText.textContent = `⏳ ${timeLeft} секунд залишилось`;
 
-  // Коли робот договорить (1 секунда затримки після початку звуку)
-  setTimeout(() => {
-    thirtysec.style.display = "block";
-    thirtysec.currentTime = 0;
-    thirtysec.pause(); // не автозапускаємо
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+
+      // 🟦 Після завершення 30 секунд:
+      body.style.backgroundColor = "#1800ad"; // повертаємо синій фон
+      loseMsg.style.display = "none";
+      timerText.style.display = "none"; // ховаємо таймер
+      question.style.display = "block"; // знову показуємо питання
+      answers.style.display = "flex"; // і варіанти відповідей
+    }
   }, 1000);
-    thirtysec.addEventListener("seeking", () => {
-  if (thirtysec.currentTime < thirtysec.duration - 1) {
-    thirtysec.currentTime = 0; // якщо користувач намагається перемотати — повертає на початок
-  }
-});
-setTimeout(() => {
-  thirtysec.style.display = "block";
-  thirtysec.controls = true;
-  thirtysec.currentTime = 0;
-  thirtysec.load();
-  thirtysec.play(); // <-- дозволяє запустити одразу
-}, 1000);
-
-  // Коли користувач сам натисне Play і догляне до кінця — показуємо питання знову
-  thirtysec.onended = () => {
-    thirtysec.style.display = "none";
-    nextQuestion();
-  };
-    thirtysec.onended = () => {
-  thirtysec.style.display = "none";
-  document.querySelector(".litle-title").style.display = "block";
-  document.querySelector(".wth-dis").style.display = "flex";
-  nextQuestion();
-};
-
-}
- function loseone() { loseGeneric(1); }
-function losetwo() { loseGeneric(2); }
-function losetree() { loseGeneric(3); }
-            
-function playMedia() {
-  const audio = new Audio("forgame/інглішпитк3.mp3");
-  const video = document.getElementById("forvideo");
-  video.playbackRate = 1.2;
-
-  audio.play();
-  video.play();
-
-  // коли аудіо закінчиться — зупини відео
-  audio.onended = () => {
-    video.pause();
-  };
-}
-
-function nextQuestion() {
-    document.querySelector(".wth-dis").style.display = "flex";
-
-  const reddv = document.getElementById("forgreen");
-  reddv.style.display = "block";
-
-  document.querySelector(".title").textContent = "Запитання:#2";
-  const options = document.querySelectorAll(".white-dv button");
-
-  options[0].textContent = "A)Switch";
-  options[1].textContent = "B) Display";
-  options[2].textContent = "C)Engine";
-  options[3].textContent = "D) Sensor";
 }
 
 
+      function win() {
+        // Зелений фон
+        body.style.backgroundColor = "#15921a";
 
-//#921525
-//#1800ad
-//#ffde59
-//#cb6ce6
+        // Ховаємо все інше
+        question.style.display = "none";
+        answers.style.display = "none";
+        loseMsg.style.display = "none";
+          oneLater.style.display = "inline-block";
 
-        </script>
-    </body>
+        // Показуємо повідомлення перемоги
+        winMsg.style.display = "block";
+      }
+    </script>
+  </body>
 </html>
